@@ -1,16 +1,30 @@
 const { Router } = require("express");
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.status(200).send({ cities: ["fake1", "fake2"] });
+const Favourite = require("../models/favourites");
+
+
+router.get("/", async (req, res) => {
+    const favourites = await Favourite.find();
+    res.status(200)
+        .send(favourites);
 });
 
-router.post("/", (req, res) => {
-    res.status(200).json(req.body);
+router.post("/", async (req, res) => {
+    const favourite = new Favourite({
+        cityName: req.body.cityName
+    });
+    const savedFavourite = await favourite.save();
+
+    res.status(200)
+        .json(savedFavourite);
 });
 
-router.delete("/", (req, res) => {
-    res.status(200).send(req.body);
+router.delete("/", async (req, res) => {
+    await Favourite.deleteOne({ cityName: req.body.cityName });
+
+    res.status(200)
+        .send(req.body);
 });
 
 

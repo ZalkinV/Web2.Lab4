@@ -9,5 +9,9 @@ router.post("/", (req, res) => {
     res.status(200).json(req.body);
 });
 
+router.delete("/", (req, res) => {
+    res.status(200).send(req.body);
+});
+
 
 module.exports = router;

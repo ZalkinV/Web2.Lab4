@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const favourites = require("./routes/favourites");
+const weather = require("./routes/weather");
 
 
 const APP_URL = "localhost";
@@ -14,6 +15,7 @@ const DB_PORT = 27017;
 const app = express();
 app.use(express.json());
 app.use("/favourites", favourites);
+app.use("/weather", weather);
 
 
 (async function () {

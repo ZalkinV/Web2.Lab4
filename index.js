@@ -18,7 +18,7 @@ app.use("/favourites", favourites);
 
 (async function() {
     try {
-        await mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}`, {
+        await mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}/web2lab4`, {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true

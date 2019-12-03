@@ -4,27 +4,30 @@ const router = Router();
 const Favourite = require("../models/favourites");
 
 
-router.get("/", async (req, res) => {
-    const favourites = await Favourite.find();
-    res.status(200)
-        .send(favourites);
+router.get("/", (req, res) => {
+    Favourite.find()
+        .then(favourites => 
+            res.status(200).json(favourites))
+        .catch(error =>
+            res.status(400).json(error));
 });
 
-router.post("/", async (req, res) => {
-    const favourite = new Favourite({
+router.post("/", (req, res) => {
+    new Favourite({
         cityName: req.body.cityName
-    });
-    const savedFavourite = await favourite.save();
-
-    res.status(200)
-        .json(savedFavourite);
+    }).save()
+    .then(saved =>
+        res.status(200).json(saved))
+    .catch(error =>
+        res.status(400).json(error));
 });
 
-router.delete("/", async (req, res) => {
-    await Favourite.deleteOne({ cityName: req.body.cityName });
-
-    res.status(200)
-        .send(req.body);
+router.delete("/", (req, res) => {
+    Favourite.findOneAndDelete({ cityName: req.body.cityName })
+    .then(deleted =>
+        res.status(200).json(deleted))
+    .catch(error => 
+        res.status(400).json(error));
 });
 
 

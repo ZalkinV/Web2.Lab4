@@ -1,14 +1,18 @@
 const { Router } = require("express");
 const router = Router();
 
+const api = require("../api");
+
 
 router.get("/", async (req, res) => {
   try {
     const cityName = req.query.cityName;
-    res.status(200).json(cityName);
+    
+    const forecast = await api.fetchWeatherByCityName(cityName);
+    res.status(200).json(forecast);
   } catch (error) {
     console.error(error);
-    res.status(400).send(error.message);
+    res.status(404).json(error.message);
   }
 });
 

@@ -6,8 +6,11 @@ async function getAllFavourites() {
 }
 
 async function createFavourite(cityName) {
-  const created = await Favourite.create({ cityName });
-  return created;
+  const upserted = await Favourite.findOneAndUpdate(
+    { cityName },
+    { cityName },
+    { upsert: true, new: true});
+  return upserted;
 }
 
 async function deleteFavourite(cityName) {

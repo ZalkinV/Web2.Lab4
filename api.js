@@ -15,7 +15,19 @@ async function fetchWeatherByCityName(cityName) {
   }
 }
 
+async function fetchWeatherByCoords(lat, lon) {
+  const API_URL = `${API_BASE_URL}?lat=${lat}&lon=${lon}${API_BASE_PARAMETERS}`;
+
+  try {
+    const response = await axios.get(API_URL);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+}
+
 
 module.exports = {
   fetchWeatherByCityName,
+  fetchWeatherByCoords,
 };

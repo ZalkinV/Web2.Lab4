@@ -20,7 +20,9 @@ router.get("/coordinates", async (req, res) => {
   try {
     const lat = req.query.lat;
     const lon = req.query.lon;
-    res.status(200).json({ lat, lon });
+
+    const forecast = await api.fetchWeatherByCoords(lat, lon);
+    res.status(200).json(forecast);
   } catch (error) {
     console.error(error);
     res.status(400).json(error.message);

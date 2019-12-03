@@ -4,7 +4,8 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    res.sendStatus(200);
+    const cityName = req.query.cityName;
+    res.status(200).send(cityName);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -12,7 +13,9 @@ router.get("/", async (req, res) => {
 
 router.get("/coordinates", async (req, res) => {
   try {
-    res.sendStatus(200);
+    const lat = req.query.lat;
+    const lon = req.query.lon;
+    res.status(200).send({ lat, lon });
   } catch (error) {
     res.status(400).send(error);
   }

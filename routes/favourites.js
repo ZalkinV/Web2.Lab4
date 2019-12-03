@@ -13,9 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  new Favourite({
-    cityName: req.body.cityName
-  }).save()
+  Favourite.create({ cityName: req.body.cityName })
     .then(saved =>
       res.status(200).json(saved))
     .catch(error =>

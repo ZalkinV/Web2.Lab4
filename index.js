@@ -16,19 +16,19 @@ app.use(express.json());
 app.use("/favourites", favourites);
 
 
-(async function() {
-    try {
-        await mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}/web2lab4`, {
-            useNewUrlParser: true,
-            useFindAndModify: false,
-            useUnifiedTopology: true
-        });
+(async function () {
+  try {
+    await mongoose.connect(`mongodb://${DB_URL}:${DB_PORT}/web2lab4`, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
+    });
 
-        app.listen(APP_PORT, () => {
-            console.log(`Server has been started at http://${APP_URL}:${APP_PORT}`);
-        });
-    } catch (e) {
-        console.error(e.message);
-    }
+    app.listen(APP_PORT, () => {
+      console.log(`Server has been started at http://${APP_URL}:${APP_PORT}`);
+    });
+  } catch (e) {
+    console.error(e.message);
+  }
 })();
 

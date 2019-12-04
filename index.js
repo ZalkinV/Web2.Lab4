@@ -6,7 +6,7 @@ const weather = require("./routes/weather");
 
 
 const APP_URL = "localhost";
-const APP_PORT = 3000;
+const APP_PORT = 3001;
 
 const DB_URL = "localhost";
 const DB_PORT = 27017;

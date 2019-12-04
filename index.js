@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 const favourites = require("./routes/favourites");
@@ -14,6 +15,7 @@ const DB_PORT = 27017;
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use("/favourites", favourites);
 app.use("/weather", weather);
 

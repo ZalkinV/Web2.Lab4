@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 
 const { getAllFavourites, createFavourite, deleteFavourite } = require("../services/favourites");
+const api = require("../api");
 
 
 router.get("/", async (req, res) => {
@@ -16,8 +17,10 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const created = await createFavourite(req.body.cityName);
-    res.status(200).json(created)
+    const forecast = await api.fetchWeatherByCityName(req.body.cityName);
+
+    const created = await createFavourite(forecast.name);
+    res.status(200).json({ created, forecast });
   } catch (error) {
     console.error(error);
     res.status(400).json(error.message);

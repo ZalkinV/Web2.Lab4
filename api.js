@@ -5,7 +5,7 @@ const API_BASE_PARAMETERS = "&appid=7825ce4ffa896c5019e53087c858568a&units=metri
 
 
 async function fetchWeatherByCityName(cityName) {
-  const API_URL = `${API_BASE_URL}?q=${cityName}${API_BASE_PARAMETERS}`;
+  const API_URL = encodeURI(`${API_BASE_URL}?q=${cityName}${API_BASE_PARAMETERS}`);
 
   try {
     const response = await axios.get(API_URL);
@@ -16,7 +16,7 @@ async function fetchWeatherByCityName(cityName) {
 }
 
 async function fetchWeatherByCoords(lat, lon) {
-  const API_URL = `${API_BASE_URL}?lat=${lat}&lon=${lon}${API_BASE_PARAMETERS}`;
+  const API_URL = encodeURI(`${API_BASE_URL}?lat=${lat}&lon=${lon}${API_BASE_PARAMETERS}`);
 
   try {
     const response = await axios.get(API_URL);

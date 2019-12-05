@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     res.status(200).json(favourites);
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(400).json({ message: error.message });
   }
 });
 
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     res.status(200).json({ created, forecast });
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(400).json({ message: error.message });
   }
 });
 
@@ -33,7 +33,7 @@ router.delete("/", async (req, res) => {
     res.status(200).json(deleted);
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+    res.status(400).json({ message: error.message });
   }
 });
 

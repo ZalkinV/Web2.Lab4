@@ -11,7 +11,12 @@ async function fetchWeatherByCityName(cityName) {
     const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
-    throw new Error(error.response.data.message);
+    let errorMessage;
+    if (error.response)
+      errorMessage = error.response.data.message;
+    else
+      errorMessage = error.message;
+    throw new Error(errorMessage);
   }
 }
 
@@ -22,7 +27,12 @@ async function fetchWeatherByCoords(lat, lon) {
     const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
-    throw new Error(error.response.data.message);
+    let errorMessage;
+    if (error.response)
+      errorMessage = error.response.data.message;
+    else
+      errorMessage = error.message;
+    throw new Error(errorMessage);
   }
 }
 

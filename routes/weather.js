@@ -1,14 +1,14 @@
 const { Router } = require("express");
 const router = Router();
 
-const api = require("../api");
+const { fetchWeatherByCityName, fetchWeatherByCoords } = require("../services/weather");
 
 
 router.get("/", async (req, res) => {
   try {
     const cityName = req.query.cityName;
     
-    const forecast = await api.fetchWeatherByCityName(cityName);
+    const forecast = await fetchWeatherByCityName(cityName);
     res.status(200).json(forecast);
   } catch (error) {
     console.error(error);
@@ -21,7 +21,7 @@ router.get("/coordinates", async (req, res) => {
     const lat = req.query.lat;
     const lon = req.query.lon;
 
-    const forecast = await api.fetchWeatherByCoords(lat, lon);
+    const forecast = await fetchWeatherByCoords(lat, lon);
     res.status(200).json(forecast);
   } catch (error) {
     console.error(error);

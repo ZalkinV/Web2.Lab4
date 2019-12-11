@@ -4,8 +4,8 @@
   "description": "Необходимо доработать лабораторную работу №2, добавив реализацию серверной части приложения. Серверная часть реализуется на NodeJS, допустимо использовать фреймворки вроде Express или Sails.",
   "main": "index.js",
   "scripts": {
-    "start": "node",
-    "dev": "nodemon"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
